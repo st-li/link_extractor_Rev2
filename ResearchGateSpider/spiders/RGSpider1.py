@@ -15,7 +15,7 @@ import time
 import re
 import gzip
 from w3lib.http import headers_dict_to_raw, headers_raw_to_dict
-import redis
+
 #import pandas as pd
 
 class RGSpider1(CrawlSpider):
@@ -76,13 +76,13 @@ class RGSpider1(CrawlSpider):
         pattern8 = re.compile('\.slddrw|\.sldprt|\.sldasm|\.x_b|\.x_t|\.dwg|\.dxf|\.stp|\.step|\.igs|\.stl|\.diff|\.txt|\.lpk|wiki', re.I)
         ret = []
         for link in links:
-            self.conn.sadd(self.university, link)
+            #self.conn.sadd(self.university, link)
             if len(link.url) < 80 and pattern.findall(link.url) == [] and pattern1.findall(link.url) == [] and pattern2.findall(link.url) == [] \
                     and pattern3.findall(link.url) == [] and pattern4.findall(link.url) == [] and pattern5.findall(link.url) == [] \
                     and pattern6.findall(link.url) == [] and pattern7.findall(link.url) == [] and pattern8.findall(link.url) == [] \
                     and len(link.url.split('//')[1].split('/')) <= 6:
                 if link.url.find(self.allowed_domains[0]) != -1:
-                    self.conn.sadd(self.university + " returned", link)
+                    #self.conn.sadd(self.university + " returned", link)
                     ret.append(link)
         return ret
 
