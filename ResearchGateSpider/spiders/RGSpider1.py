@@ -15,7 +15,7 @@ import time
 import re
 import gzip
 from w3lib.http import headers_dict_to_raw, headers_raw_to_dict
-
+import redis
 #import pandas as pd
 
 class RGSpider1(CrawlSpider):
@@ -67,22 +67,22 @@ class RGSpider1(CrawlSpider):
         # pattern = re.compile('network|semi|lib|develop|alum|career|dean|lesson|undergrad|award|advis|publi|\bacademic\b',re.I)
         pattern = re.compile('network|semi|lib|develop|alum|career|dean|lesson|undergrad|award|advis|publi|history|howto|faq|parking|living|maps|teaching|summary|readme',re.I)
         pattern1 = re.compile('class|calendar|journal|polic|job|pdf|\.doc|\.xls|admi|event|member|new|cv|course|\.7z|\.gz|\.tar|rpm|\.rpm|\.max|\.iso|voicemail|mirror',re.I)
-        pattern2 = re.compile('student|ensemble|login|office|camp|handbook|guide|degree|major|mentor|leadership|troubleshooting|misc|about_us|extension',re.I)
-        pattern3 = re.compile('contact|curriculum|stud|intern|program|meeting|fall|spring|cert|arch|ambass|faci|serv|tutor|proj|Knowledgebase|mailto',re.I)
-        pattern4 = re.compile('graduate|diver|senate|center|counsel|emp|roll|utili|hr|manual|fund|ground|posts|messeng|appl|topic|assess|podcast|keyword',re.I)
+        pattern2 = re.compile('student|ensemble|login|office|camp|handbook|guide|degree|major|mentor|leadership|troubleshooting|misc|about_us|extension|author',re.I)
+        pattern3 = re.compile('contact|curriculum|stud|intern|program|meeting|fall|spring|cert|arch|ambass|faci|serv|tutor|proj|Knowledgebase|mailto|concern|display',re.I)
+        pattern4 = re.compile('graduate|diver|senate|center|counsel|emp|roll|utili|hr|manual|fund|ground|posts|messeng|appl|topic|assess|podcast|keyword|expert',re.I)
         pattern5 = re.compile('home|conf|video|hosp|aid|hous|interv|surv|activ|agend|regist|help|announ|operat|image|handle|browse|community|yearly|quarterly|monthly|weekly|daily|hourly|mills',re.I)
         pattern6 = re.compile('report|stand|secu',re.I)
         pattern7 = re.compile(r'19\d\d|20\d\d',re.I)
-        pattern8 = re.compile('\.slddrw|\.sldprt|\.sldasm|\.x_b|\.x_t|\.dwg|\.dxf|\.stp|\.step|\.igs|\.stl|\.diff|\.txt|\.lpk|wiki', re.I)
+        pattern8 = re.compile('\.slddrw|\.sldprt|\.sldasm|\.x_b|\.x_t|\.dwg|\.dxf|\.stp|\.step|\.igs|\.stl|\.diff|\.txt|\.dmg|\.lpk|wiki|document|download|relatedcontent|display|forum', re.I)
         ret = []
         for link in links:
-            #self.conn.sadd(self.university, link)
+            self.conn.sadd(self.university, link)
             if len(link.url) < 80 and pattern.findall(link.url) == [] and pattern1.findall(link.url) == [] and pattern2.findall(link.url) == [] \
                     and pattern3.findall(link.url) == [] and pattern4.findall(link.url) == [] and pattern5.findall(link.url) == [] \
                     and pattern6.findall(link.url) == [] and pattern7.findall(link.url) == [] and pattern8.findall(link.url) == [] \
                     and len(link.url.split('//')[1].split('/')) <= 6:
                 if link.url.find(self.allowed_domains[0]) != -1:
-                    #self.conn.sadd(self.university + " returned", link)
+                    self.conn.sadd(self.university + " returned", link)
                     ret.append(link)
         return ret
 
