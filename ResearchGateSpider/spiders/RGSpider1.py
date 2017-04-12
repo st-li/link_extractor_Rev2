@@ -69,7 +69,7 @@ class RGSpider1(CrawlSpider):
         pattern3 = re.compile('contact|curriculum|stud|intern|program|meeting|fall|spring|cert|arch|ambass|faci|serv|tutor|proj|Knowledgebase|mailto|concern|display',re.I)
         pattern4 = re.compile('graduate|diver|senate|center|counsel|emp|roll|utili|hr|manual|fund|ground|posts|messeng|appl|topic|assess|podcast|keyword|expert',re.I)
         pattern5 = re.compile('home|conf|video|hosp|aid|hous|interv|surv|activ|agend|regist|help|announ|operat|image|handle|browse|community|yearly|quarterly|monthly|weekly|daily|hourly|mills',re.I)
-        pattern6 = re.compile('report|stand|secu',re.I)
+        pattern6 = re.compile('report|stand|secu|playlist|elog|ords|bugs|objects|cluster|repository',re.I)
         pattern7 = re.compile(r'19\d\d|20\d\d',re.I)
         pattern8 = re.compile('\.slddrw|\.sldprt|\.sldasm|\.x_b|\.x_t|\.dwg|\.dxf|\.stp|\.step|\.igs|\.stl|\.diff|\.txt|\.dmg|\.lpk|wiki|document|download|relatedcontent|display|forum', re.I)
         ret = []
