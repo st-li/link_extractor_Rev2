@@ -73,7 +73,7 @@ class RGSpider1(CrawlSpider):
         pattern7 = re.compile(r'19\d\d|20\d\d',re.I)
         pattern8 = re.compile('\.slddrw|\.sldprt|\.sldasm|\.x_b|\.x_t|\.dwg|\.dxf|\.stp|\.step|\.igs|\.stl|\.diff|\.txt|\.dmg|\.lpk|wiki|document|download|relatedcontent|display|forum', re.I)
         
-		pattern_allowed = re.compile('people|faculty|person|professor|staff',re.I)
+	pattern_allowed = re.compile('people|faculty|person|professor|staff',re.I)
         ret = []
         for link in links:
             if len(link.url) < 100 and pattern.findall(link.url) == [] and pattern1.findall(link.url) == [] and pattern2.findall(link.url) == [] \
