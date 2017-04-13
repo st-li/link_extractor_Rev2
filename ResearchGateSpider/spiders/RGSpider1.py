@@ -72,12 +72,16 @@ class RGSpider1(CrawlSpider):
         pattern6 = re.compile('report|stand|secu|playlist|elog|ords|bugs|objects|cluster|repository',re.I)
         pattern7 = re.compile(r'19\d\d|20\d\d',re.I)
         pattern8 = re.compile('\.slddrw|\.sldprt|\.sldasm|\.x_b|\.x_t|\.dwg|\.dxf|\.stp|\.step|\.igs|\.stl|\.diff|\.txt|\.dmg|\.lpk|wiki|document|download|relatedcontent|display|forum', re.I)
+        
+		pattern_allowed = re.compile('people|faculty|person|professor|staff',re.I)
         ret = []
         for link in links:
-            if len(link.url) < 80 and pattern.findall(link.url) == [] and pattern1.findall(link.url) == [] and pattern2.findall(link.url) == [] \
+            if len(link.url) < 100 and pattern.findall(link.url) == [] and pattern1.findall(link.url) == [] and pattern2.findall(link.url) == [] \
                     and pattern3.findall(link.url) == [] and pattern4.findall(link.url) == [] and pattern5.findall(link.url) == [] \
-                    and pattern6.findall(link.url) == [] and pattern7.findall(link.url) == [] and pattern8.findall(link.url) == []:
-                if link.url.find(self.allowed_domains[0]) != -1:
+                    and pattern6.findall(link.url) == [] and pattern7.findall(link.url) == [] and pattern8.findall(link.url) == [] and link.url.find(self.allowed_domains[0]) != -1:
+                if len(link.url.split('//')[1].split('/')) <= 6:
+                    ret.append(link)
+                elif pattern_allowed.findall(link.url):
                     ret.append(link)
         return ret
 
