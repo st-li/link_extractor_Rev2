@@ -76,8 +76,7 @@ class RGSpider1(CrawlSpider):
         for link in links:
             if len(link.url) < 80 and pattern.findall(link.url) == [] and pattern1.findall(link.url) == [] and pattern2.findall(link.url) == [] \
                     and pattern3.findall(link.url) == [] and pattern4.findall(link.url) == [] and pattern5.findall(link.url) == [] \
-                    and pattern6.findall(link.url) == [] and pattern7.findall(link.url) == [] and pattern8.findall(link.url) == [] \
-                    and len(link.url.split('//')[1].split('/')) <= 6:
+                    and pattern6.findall(link.url) == [] and pattern7.findall(link.url) == [] and pattern8.findall(link.url) == []:
                 if link.url.find(self.allowed_domains[0]) != -1:
                     ret.append(link)
         return ret
